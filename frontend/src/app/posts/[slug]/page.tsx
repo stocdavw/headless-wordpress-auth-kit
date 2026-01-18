@@ -1,6 +1,7 @@
 import { fetchGqlPostBySlug } from "@/lib/wp-graphql";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import styles from "../../page.module.css";
 
 export const revalidate = 60;
 export const dynamic = "force-dynamic";
@@ -16,14 +17,16 @@ export default async function PostPage(props: {
     }
 
     return (
-        <div className="max-w-3xl mx-auto py-8">
-            <Link href="/" className="text-blue-400 hover:text-white mb-8 inline-block">
-                &larr; Back to posts
-            </Link>
-            <article className="prose prose-invert lg:prose-xl">
-                <h1 className="mb-4 text-4xl font-bold">{post.title}</h1>
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
-            </article>
+        <div className={styles.page}>
+            <div className={styles.section}>
+                <Link href="/" className="text-blue-400 hover:text-white mb-8 inline-block" style={{ marginBottom: '24px', display: 'inline-block', fontWeight: 600 }}>
+                    &larr; Back to posts
+                </Link>
+                <article className="prose prose-invert lg:prose-xl">
+                    <h1 className="mb-4 text-4xl font-bold">{post.title}</h1>
+                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </article>
+            </div>
         </div>
     );
 }
