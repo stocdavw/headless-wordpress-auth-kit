@@ -1,29 +1,47 @@
 .nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    background-color: var(--panel-strong);
-    padding: 24px;
+    padding: 1rem 2rem;
+    background: var(--panel-strong);
     border-bottom: 1px solid var(--panel-border);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.logoLink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.logo {
+    border-radius: 8px;
+}
+
+.siteTitle {
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .authButton {
-    background: linear-gradient(120deg, #0ea5e9, #8b5cf6);
-    color: #0b1222;
-    padding: 10px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    display: inline-flex;
-    gap: 8px;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-    transition: transform 150ms ease, box-shadow 150ms ease;
-    text-decoration: none;
-    line-height: 1;
-    font-size: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--foreground);
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    text-decoration: none;
 }
 
 .authButton:hover {

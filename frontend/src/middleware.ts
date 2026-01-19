@@ -3,10 +3,18 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
     const token = request.cookies.get('session_token')
-    const publicPaths = ['/login', '/favicon.ico']
-    const isPublicPath = publicPaths.some(path => request.nextUrl.pathname.startsWith(path))
+    const { pathname } = request.nextUrl
 
-    if (request.nextUrl.pathname.startsWith('/_next') || request.nextUrl.pathname.startsWith('/static')) {
+    // Allow static files and public assets
+    const publicPaths = ['/login', '/logo.png', '/icon.png', '/favicon.ico']
+    const isPublicPath = publicPaths.some(path => pathname === path || pathname.startsWith(path))
+
+    // Skip middleware for internal Next.js paths and static files
+    if (
+        pathname.startsWith('/_next') ||
+        pathname.startsWith('/static') ||
+        pathname.includes('.') // Allow all files with extensions
+    ) {
         return NextResponse.next()
     }
 
@@ -14,7 +22,7 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/login', request.url))
     }
 
-    if (token && request.nextUrl.pathname === '/login') {
+    if (token && pathname === '/login') {
         return NextResponse.redirect(new URL('/', request.url))
     }
 
@@ -23,6 +31,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|logo.png|icon.png).*)',
     ],
 }
