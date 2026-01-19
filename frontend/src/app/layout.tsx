@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Headless WP Starter",
-    description: "Next.js + WordPress (REST + GraphQL) starter",
+    title: "Headless WP Auth Kit",
+    description: "Next.js + WordPress (REST + GraphQL) Authentication starter with JWT.",
 };
 
 export default function RootLayout({

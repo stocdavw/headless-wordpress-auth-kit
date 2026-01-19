@@ -1,5 +1,5 @@
 {
-    "name": "frontend",
+    "name": "headless-wordpress-auth-kit",
     "version": "0.1.0",
     "private": true,
     "scripts": {
